@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Management Ignition — Ignite the potential in your team</title>
+<meta name="description" content="Five AI tools built on 30 years of leadership research. Set goals, delegate, give feedback, coach, and run meetings — with the skill and confidence of the best leaders.">
+<meta property="og:title" content="Management Ignition">
+<meta property="og:description" content="The tools your managers were never given. Built on 30 years of leadership research. Powered by AI.">
+<meta property="og:url" content="https://management-ignition.com">
+
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-NK4S7FNNRB"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-NK4S7FNNRB');
+</script>
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,300;1,9..144,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --navy:      #1B2A4A;
+    --teal:      #0E7C7B;
+    --teal-pale: #E8F5F5;
+    --off-white: #F8F7F4;
+    --warm-grey: #E8E6E1;
+    --mid-grey:  #9B9990;
+    --text:      #1B2A4A;
+    --text-muted:#6B6960;
+    --blue:      #0077B6;
+    --purple:    #8B00CC;
+    --green:     #4CAF50;
+    --orange:    #FF9800;
+    --red:       #F44336;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 400;
+    color: var(--text);
+    background: var(--off-white);
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(248,247,244,0.94);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--warm-grey);
+    padding: 0 2rem; height: 64px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .nav-brand { display: flex; align-items: center; gap: 0.6rem; text-decoration: none; }
+  .nav-name { font-family: 'Fraunces', serif; font-weight: 600; font-size: 1.05rem; color: var(--navy); }
+  .nav-links { display: flex; align-items: center; gap: 2rem; list-style: none; }
+  .nav-links a { font-size: 0.875rem; font-weight: 500; color: var(--text-muted); text-decoration: none; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--navy); }
+  .nav-cta { background: var(--navy) !important; color: #fff !important; padding: 0.45rem 1.1rem; border-radius: 6px; font-weight: 500 !important; }
+  .nav-cta:hover { background: var(--teal) !important; }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh; display: flex; align-items: center;
+    padding: 8rem 2rem 6rem; position: relative; overflow: hidden;
+  }
+  .hero::before {
+    content: ''; position: absolute; top: -180px; right: -180px;
+    width: 560px; height: 560px;
+    background: radial-gradient(circle, rgba(14,124,123,0.09) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-inner { max-width: 860px; margin: 0 auto; position: relative; z-index: 1; }
+  .hero-eyebrow {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    font-size: 0.78rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--teal); background: var(--teal-pale);
+    padding: 0.3rem 0.85rem; border-radius: 99px; margin-bottom: 1.5rem;
+  }
+  h1 {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(2.6rem, 5.5vw, 4.6rem);
+    font-weight: 700; line-height: 1.08; letter-spacing: -0.03em;
+    color: var(--navy); margin-bottom: 1.25rem;
+  }
+  h1 em { font-style: italic; color: var(--teal); }
+  .hero-sub {
+    font-size: clamp(1rem, 1.8vw, 1.15rem);
+    color: var(--text-muted); margin-bottom: 1.75rem; line-height: 1.65;
+    max-width: 680px;
+  }
+  .hero-pull {
+    font-family: 'Fraunces', serif;
+    font-size: 1.1rem; font-style: italic;
+    color: var(--navy); line-height: 1.6;
+    border-left: 3px solid var(--teal);
+    padding: 1rem 1.25rem;
+    background: white; border-radius: 0 8px 8px 0;
+    margin-bottom: 2.5rem; max-width: 640px;
+  }
+  .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; align-items: center; }
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 0.45rem;
+    background: var(--navy); color: white; text-decoration: none;
+    font-weight: 600; font-size: 0.95rem;
+    padding: 0.85rem 1.75rem; border-radius: 8px;
+    transition: all 0.2s;
+  }
+  .btn-primary:hover { background: var(--teal); transform: translateY(-1px); box-shadow: 0 4px 16px rgba(14,124,123,0.25); }
+  .btn-secondary {
+    display: inline-flex; align-items: center; gap: 0.45rem;
+    color: var(--navy); text-decoration: none;
+    font-weight: 500; font-size: 0.95rem;
+    padding: 0.85rem 1.75rem; border-radius: 8px;
+    border: 1.5px solid var(--warm-grey); background: white;
+    transition: all 0.2s;
+  }
+  .btn-secondary:hover { border-color: var(--navy); transform: translateY(-1px); }
+
+  /* ── STATS ── */
+  .stats { padding: 4rem 2rem; background: var(--navy); }
+  .stats-inner {
+    max-width: 960px; margin: 0 auto;
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem;
+  }
+  .stat-item { text-align: center; padding: 1rem; }
+  .stat-num { font-family: 'Fraunces', serif; font-size: 3.2rem; font-weight: 700; color: white; line-height: 1; margin-bottom: 0.4rem; letter-spacing: -0.03em; }
+  .stat-num span { color: var(--teal); }
+  .stat-desc { font-size: 0.85rem; color: rgba(255,255,255,0.6); line-height: 1.55; }
+  .stat-source { font-size: 0.75rem; color: rgba(255,255,255,0.32); margin-top: 0.25rem; }
+
+  /* ── SHARED SECTION LAYOUT ── */
+  section { padding: 6rem 2rem; }
+  .section-inner { max-width: 960px; margin: 0 auto; }
+  .section-label { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--teal); margin-bottom: 0.6rem; }
+  h2 {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(1.7rem, 3.2vw, 2.6rem);
+    font-weight: 600; line-height: 1.15; letter-spacing: -0.02em;
+    color: var(--navy); margin-bottom: 0.85rem;
+  }
+  .section-lead { font-size: 1.05rem; color: var(--text-muted); max-width: 640px; margin-bottom: 3rem; line-height: 1.75; }
+
+  /* ── FOUR CONDITIONS ── */
+  .conditions { background: white; }
+  .conditions-intro { max-width: 700px; margin-bottom: 3rem; }
+  .conditions-intro p { font-size: 1.05rem; line-height: 1.8; color: var(--text-muted); margin-bottom: 1rem; }
+  .conditions-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 1.5rem; }
+  .condition-card {
+    background: var(--off-white); border-radius: 12px;
+    padding: 1.5rem; border-top: 3px solid var(--teal);
+  }
+  .condition-letter {
+    font-family: 'Fraunces', serif; font-size: 2.8rem; font-weight: 700;
+    color: var(--teal); line-height: 1; margin-bottom: 0.5rem; letter-spacing: -0.04em;
+  }
+  .condition-name { font-size: 1rem; font-weight: 600; color: var(--navy); margin-bottom: 0.35rem; }
+  .condition-question { font-size: 0.8rem; font-style: italic; color: var(--mid-grey); margin-bottom: 0.75rem; }
+  .condition-desc { font-size: 0.875rem; color: var(--text-muted); line-height: 1.6; }
+
+  /* ── PROBLEM / GAP ── */
+  .gap-section { background: var(--off-white); }
+  .gap-inner { max-width: 800px; margin: 0 auto; }
+  .gap-inner h2 { margin-bottom: 1.5rem; }
+  .gap-inner p { font-size: 1.05rem; line-height: 1.85; color: var(--text-muted); margin-bottom: 1.25rem; }
+  .gap-pull {
+    font-family: 'Fraunces', serif; font-size: 1.2rem; font-style: italic;
+    color: var(--navy); border-left: 3px solid var(--teal);
+    padding: 1rem 1.25rem; background: white;
+    border-radius: 0 8px 8px 0; margin: 2rem 0;
+  }
+
+  /* ── HOW IT WORKS ── */
+  .how { background: white; }
+  .how-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin-top: 2.5rem; }
+  .how-item { padding: 1.5rem; background: var(--off-white); border-radius: 12px; }
+  .how-num { font-family: 'Fraunces', serif; font-size: 2.8rem; font-weight: 700; color: var(--warm-grey); line-height: 1; margin-bottom: 0.6rem; letter-spacing: -0.04em; }
+  .how-title { font-size: 0.95rem; font-weight: 600; color: var(--navy); margin-bottom: 0.4rem; }
+  .how-desc { font-size: 0.875rem; color: var(--text-muted); line-height: 1.6; }
+
+  /* ── DUAL OUTPUT ── */
+  .dual { background: linear-gradient(135deg, var(--navy) 0%, #0d3d6e 100%); }
+  .dual h2 { color: white; }
+  .dual .section-label { color: rgba(255,255,255,0.45); }
+  .dual .section-lead { color: rgba(255,255,255,0.65); }
+  .dual-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 2rem; }
+  .dual-card { background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.12); border-radius: 12px; padding: 1.75rem; }
+  .dual-card-num { font-family: 'Fraunces', serif; font-size: 2.4rem; font-weight: 700; color: var(--teal); line-height: 1; margin-bottom: 0.65rem; }
+  .dual-card h3 { font-size: 1rem; font-weight: 600; color: white; margin-bottom: 0.45rem; }
+  .dual-card p { font-size: 0.875rem; color: rgba(255,255,255,0.62); line-height: 1.65; }
+
+  /* ── TOOLS ── */
+  .tools { background: var(--off-white); }
+  .tools-grid { display: grid; gap: 1.5rem; margin-top: 1.5rem; }
+  .tool-card {
+    background: white; border-radius: 16px;
+    padding: 2rem 2rem 2rem 0;
+    display: grid; grid-template-columns: 6px 1fr;
+    gap: 0 2rem; border: 1px solid var(--warm-grey);
+    transition: all 0.25s; text-decoration: none;
+    color: inherit; overflow: hidden; cursor: pointer;
+  }
+  .tool-card:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(27,42,74,0.1); border-color: transparent; }
+  .tool-accent { border-radius: 6px 0 0 6px; }
+  .tool-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; margin-bottom: 0.6rem; flex-wrap: wrap; }
+  .tool-name { font-family: 'Fraunces', serif; font-size: 1.4rem; font-weight: 600; color: var(--navy); letter-spacing: -0.02em; line-height: 1.2; }
+  .tool-strapline { font-size: 0.78rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; margin-top: 0.2rem; }
+  .tool-badge { font-size: 0.72rem; font-weight: 600; padding: 0.28rem 0.7rem; border-radius: 99px; background: var(--teal-pale); color: var(--teal); white-space: nowrap; align-self: flex-start; margin-top: 0.2rem; }
+  .tool-problem { font-size: 0.875rem; font-style: italic; color: var(--text-muted); margin-bottom: 0.6rem; line-height: 1.6; border-left: 2px solid var(--warm-grey); padding-left: 0.75rem; }
+  .tool-solution { font-size: 0.9rem; font-weight: 500; color: var(--navy); margin-bottom: 0.5rem; line-height: 1.5; }
+  .tool-desc { font-size: 0.875rem; color: var(--text-muted); line-height: 1.65; margin-bottom: 1.1rem; }
+  .tool-outputs { display: grid; grid-template-columns: 1fr 1fr; gap: 0.7rem; }
+  .output-box { background: var(--off-white); border-radius: 8px; padding: 0.85rem 1rem; }
+  .output-label { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--mid-grey); margin-bottom: 0.25rem; }
+  .output-text { font-size: 0.8rem; color: var(--text-muted); line-height: 1.5; }
+  .tool-link { display: inline-flex; align-items: center; gap: 0.4rem; margin-top: 1.1rem; font-size: 0.875rem; font-weight: 600; text-decoration: none; transition: gap 0.2s; }
+  .tool-link:hover { gap: 0.7rem; }
+
+  /* ── QUOTE ── */
+  .quote-section { background: white; text-align: center; padding: 5rem 2rem; }
+  .quote-mark { font-family: 'Fraunces', serif; font-size: 4.5rem; color: var(--warm-grey); line-height: 0.5; margin-bottom: 1rem; }
+  blockquote { font-family: 'Fraunces', serif; font-size: clamp(1.3rem, 2.4vw, 1.9rem); font-weight: 400; font-style: italic; color: var(--navy); max-width: 700px; margin: 0 auto 1.25rem; line-height: 1.45; letter-spacing: -0.01em; }
+  .quote-attr { font-size: 0.875rem; font-weight: 500; color: var(--mid-grey); letter-spacing: 0.05em; }
+
+  /* ── ABOUT ── */
+  .about { background: var(--off-white); }
+  .about-inner { max-width: 720px; margin: 0 auto; }
+  .about-body { font-size: 1rem; color: var(--text-muted); line-height: 1.8; margin-bottom: 1rem; }
+  .framework-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 1.5rem 0; }
+  .framework-tag { font-size: 0.8rem; font-weight: 500; padding: 0.3rem 0.7rem; border-radius: 99px; background: white; border: 1px solid var(--warm-grey); color: var(--text-muted); }
+
+  /* ── BETA ── */
+  .beta { background: var(--teal); text-align: center; }
+  .beta h2 { color: white; }
+  .beta .section-label { color: rgba(255,255,255,0.55); }
+  .beta-body { font-size: 1.05rem; color: rgba(255,255,255,0.8); max-width: 520px; margin: 0 auto 2rem; line-height: 1.7; }
+  .beta-qs { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 1rem; max-width: 800px; margin: 0 auto 2.5rem; text-align: left; }
+  .beta-q { background: rgba(255,255,255,0.1); border-radius: 8px; padding: 1rem; font-size: 0.875rem; color: rgba(255,255,255,0.85); line-height: 1.5; }
+  .btn-white { display: inline-flex; align-items: center; gap: 0.45rem; background: white; color: var(--teal); font-weight: 600; font-size: 0.95rem; padding: 0.85rem 1.75rem; border-radius: 8px; text-decoration: none; transition: all 0.2s; }
+  .btn-white:hover { transform: translateY(-1px); box-shadow: 0 4px 16px rgba(0,0,0,0.15); }
+
+  /* ── FOOTER ── */
+  footer { background: var(--navy); color: rgba(255,255,255,0.45); padding: 2.5rem 2rem; font-size: 0.85rem; }
+  .footer-inner { max-width: 960px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
+  .footer-links { display: flex; gap: 1.5rem; }
+  footer a { color: rgba(255,255,255,0.55); text-decoration: none; transition: color 0.2s; }
+  footer a:hover { color: white; }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(22px); } to { opacity: 1; transform: translateY(0); } }
+  .fade-up { opacity: 0; animation: fadeUp 0.7s ease forwards; }
+  .fade-up-1 { animation-delay: 0.1s; }
+  .fade-up-2 { animation-delay: 0.25s; }
+  .fade-up-3 { animation-delay: 0.4s; }
+  .fade-up-4 { animation-delay: 0.55s; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    nav { padding: 0 1.25rem; }
+    .nav-links { display: none; }
+    section { padding: 4rem 1.25rem; }
+    .hero { padding: 7rem 1.25rem 4rem; }
+    .stats { padding: 3rem 1.25rem; }
+    .dual-cards { grid-template-columns: 1fr; }
+    .tool-card { grid-template-columns: 6px 1fr; gap: 0 1.25rem; }
+    .tool-outputs { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="/" class="nav-brand">
+    <svg width="28" height="28" viewBox="0 0 32 32" fill="none">
+      <path d="M16 3C16 3 8 11 8 18C8 22.4 11.6 26 16 26C20.4 26 24 22.4 24 18C24 11 16 3 16 3Z" fill="#0E7C7B"/>
+      <path d="M16 10C16 10 11 16 11 20C11 22.8 13.2 25 16 25C18.8 25 21 22.8 21 20C21 16 16 10 16 10Z" fill="#1B2A4A"/>
+    </svg>
+    <span class="nav-name">Management Ignition</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#conditions">The framework</a></li>
+    <li><a href="#tools">The tools</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="mailto:feedback@themessagebusiness.com" class="nav-cta">Get in touch</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-eyebrow fade-up fade-up-1">🔥 Five tools live — free to try</div>
+    <h1 class="fade-up fade-up-2">Ignite the potential<br>in <em>your team.</em></h1>
+    <p class="hero-sub fade-up fade-up-3">
+      Every leader is responsible for four things: a clear purpose, a solid plan, people who are engaged and developing, and pride in the work. Most leaders know how to do it. Very few have a practical tool that helps them do it consistently — in the moment, every day, with every person on their team.
+    </p>
+    <div class="hero-pull fade-up fade-up-3">
+      The best leaders are not the ones who know the most. They are the ones who have built teams that no longer need them in the way they once did.
+    </div>
+    <div class="hero-actions fade-up fade-up-4">
+      <a href="https://delegateignite.themessagebusiness.com" class="btn-primary">Try Delegate Ignite free →</a>
+      <a href="#tools" class="btn-secondary">See all five tools</a>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats">
+  <div class="stats-inner">
+    <div class="stat-item">
+      <div class="stat-num"><span>30</span>%</div>
+      <div class="stat-desc">of managers believe they delegate well — of those, only a third are considered effective by the people they manage</div>
+      <div class="stat-source">LeadershipIQ</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num"><span>33</span>%</div>
+      <div class="stat-desc">more revenue generated by CEOs who excel at delegation, and their companies grow faster</div>
+      <div class="stat-source">Gallup</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num"><span>70</span>%</div>
+      <div class="stat-desc">of professionals have left jobs citing lack of growth — often caused by managers who hold on to high-impact tasks</div>
+      <div class="stat-source">McKinsey</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num"><span>21</span>%</div>
+      <div class="stat-desc">more productive are teams with high autonomy — the direct result of a manager who delegates and develops well</div>
+      <div class="stat-source">Harvard Business Review</div>
+    </div>
+  </div>
+</div>
+
+<!-- FOUR CONDITIONS -->
+<section class="conditions" id="conditions">
+  <div class="section-inner">
+    <p class="section-label">The framework</p>
+    <h2>Four conditions.<br>Every high-performing team.</h2>
+    <div class="conditions-intro">
+      <p>Whether you are running a manufacturing plant or a high-growth tech business, a PE-backed challenger or a not-for-profit, the conditions that make a team perform are the same. They apply to the chief executive and the first-line supervisor. The scale changes. The four conditions do not.</p>
+    </div>
+
+    <div class="conditions-grid">
+      <div class="condition-card">
+        <div class="condition-letter">P</div>
+        <div class="condition-name">Purpose</div>
+        <div class="condition-question">Where are we headed, and why does it matter?</div>
+        <div class="condition-desc">The team has a clear direction. Every person can connect their work to something that matters. Goals are committed to, not just tolerated.</div>
+      </div>
+      <div class="condition-card">
+        <div class="condition-letter">P</div>
+        <div class="condition-name">Plan</div>
+        <div class="condition-question">How are we going to get there?</div>
+        <div class="condition-desc">The work is organised. People know who owns what, how much freedom they have, and where decisions get made. Nobody is waiting for the leader to unblock something they could handle themselves.</div>
+      </div>
+      <div class="condition-card">
+        <div class="condition-letter">P</div>
+        <div class="condition-name">People</div>
+        <div class="condition-question">How do we hold ourselves to the right standards?</div>
+        <div class="condition-desc">Feedback is honest, specific, and given early. People know where they stand. The standard is held consistently — even when things are going well.</div>
+      </div>
+      <div class="condition-card">
+        <div class="condition-letter">P</div>
+        <div class="condition-name">Pride</div>
+        <div class="condition-question">Do we actually care?</div>
+        <div class="condition-desc">People take ownership. They bring solutions rather than problems. They notice things going wrong before they become serious. This is not manufactured. It is grown — through the quality of the coaching relationship.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- THE GAP -->
+<section class="gap-section">
+  <div class="section-inner">
+    <div class="gap-inner">
+      <p class="section-label">The problem</p>
+      <h2>Most leaders know what to do.<br>The hard part is doing it.</h2>
+      <p>Most leaders have been through the training. They have read the books, sat through the workshops, and understood the frameworks. The four conditions make sense. The skills are clear. And yet the gap between knowing and doing is where most leadership development budgets are wasted.</p>
+      <p>A training course teaches the skill. It does not sit with you three months later, up at eight on a Tuesday morning, when you need to give feedback to someone who is not delivering — or delegate a significant task to someone who is capable but lacking in confidence.</p>
+      <div class="gap-pull">
+        The gap between knowing and doing is where most leadership development money disappears. Management Ignition closes it.
+      </div>
+      <p>Four skills build the four conditions. Setting clear goals builds purpose. Delegating well builds the plan. Giving effective feedback holds the people standard. Coaching for performance builds pride. And all of it happens in meetings — which is why running them well is the fifth skill that makes the other four possible.</p>
+      <p>Most leaders have the knowledge. What they have never had is a practical tool that puts that knowledge to work in the moment — before a difficult conversation, not after it.</p>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how">
+  <div class="section-inner">
+    <p class="section-label">How it works</p>
+    <h2>Your brief. Ready before you walk in.</h2>
+    <p class="section-lead">Each tool handles one of the conversations leaders find hardest. You describe the situation. The tool thinks with you and gives you everything you need.</p>
+    <div class="how-grid">
+      <div class="how-item">
+        <div class="how-num">01</div>
+        <div class="how-title">Describe the situation</div>
+        <div class="how-desc">Tell the tool who you are managing and what you are trying to achieve. Type it or speak it — takes two minutes.</div>
+      </div>
+      <div class="how-item">
+        <div class="how-num">02</div>
+        <div class="how-title">The tool thinks with you</div>
+        <div class="how-desc">If your goal is too vague, it pushes back. It assesses skill and confidence. It asks the right questions before generating anything.</div>
+      </div>
+      <div class="how-item">
+        <div class="how-num">03</div>
+        <div class="how-title">Get two outputs</div>
+        <div class="how-desc">Something to share with your team member — and coaching notes that develop your own leadership practice at the same time.</div>
+      </div>
+      <div class="how-item">
+        <div class="how-num">04</div>
+        <div class="how-title">Follow through</div>
+        <div class="how-desc">Cadence advice, calendar reminders, and follow-up notes keep the conversation alive after the meeting ends.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DUAL OUTPUT -->
+<section class="dual">
+  <div class="section-inner">
+    <p class="section-label">The differentiator</p>
+    <h2>Every tool produces two things.</h2>
+    <p class="section-lead">This is what separates Management Ignition from every generic AI writing tool. It develops the leader, not just the output.</p>
+    <div class="dual-cards">
+      <div class="dual-card">
+        <div class="dual-card-num">01</div>
+        <h3>For your team member</h3>
+        <p>A clear, professional output they can read, act on, and refer back to — a briefing note, feedback document, goal statement, development summary, or actions list. Ready to share directly.</p>
+      </div>
+      <div class="dual-card">
+        <div class="dual-card-num">02</div>
+        <h3>Coaching notes for you</h3>
+        <p>How to approach the conversation. How to pitch the right level of challenge and support. What to watch for. How to close with commitment rather than compliance. You grow as a leader, every time you use it.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TOOLS -->
+<section class="tools" id="tools">
+  <div class="section-inner">
+    <p class="section-label">The suite</p>
+    <h2>Four skills. Five tools.<br>One co-pilot.</h2>
+
+    <div class="tools-grid">
+
+      <!-- DELEGATE IGNITE -->
+      <div class="tool-card" onclick="window.open('https://delegateignite.themessagebusiness.com','_blank'); gtag('event','tool_click',{'tool_name':'Delegate Ignite'});">
+        <div class="tool-accent" style="background:var(--blue)"></div>
+        <div>
+          <div class="tool-header">
+            <div>
+              <div class="tool-name">Delegate Ignite</div>
+              <div class="tool-strapline" style="color:var(--blue)">Intelligent Delegation — builds the Plan</div>
+            </div>
+            <span class="tool-badge">Live — free to try</span>
+          </div>
+          <div class="tool-problem">Most managers are carrying work their team could do. Either they hold on too tight, or they hand it over too loosely. Both cost time, limit development, and erode trust.</div>
+          <div class="tool-solution">Delegate with the right level of freedom — for this task, this person, right now.</div>
+          <div class="tool-desc">Describe the task and the person. The tool assesses their skill and confidence, recommends the right level of freedom from ten calibrated levels, sharpens your goal if it needs tightening, and generates everything you need for a proper delegation conversation — including a calendar reminder for your review.</div>
+          <div class="tool-outputs">
+            <div class="output-box">
+              <div class="output-label">For your team member</div>
+              <div class="output-text">Briefing note with goal, freedom level, resources and review date</div>
+            </div>
+            <div class="output-box">
+              <div class="output-label">Coaching notes for you</div>
+              <div class="output-text">How to pitch the challenge, support level to offer, what to watch for</div>
+            </div>
+          </div>
+          <a href="https://delegateignite.themessagebusiness.com" class="tool-link" style="color:var(--blue)" onclick="event.stopPropagation()">Try Delegate Ignite — free →</a>
+        </div>
+      </div>
+
+      <!-- FEEDBACK IGNITE -->
+      <div class="tool-card" onclick="window.open('https://feedbackignite.themessagebusiness.com','_blank'); gtag('event','tool_click',{'tool_name':'Feedback Ignite'});">
+        <div class="tool-accent" style="background:var(--purple)"></div>
+        <div>
+          <div class="tool-header">
+            <div>
+              <div class="tool-name">Feedback Ignite</div>
+              <div class="tool-strapline" style="color:var(--purple)">Intelligent Feedback — holds the People standard</div>
+            </div>
+            <span class="tool-badge">Live — free to try</span>
+          </div>
+          <div class="tool-problem">Most managers avoid giving feedback — not because they do not care, but because the last time they tried it did not land. So the behaviour carries on, and six months later it shows up in a performance review as a surprise to everyone.</div>
+          <div class="tool-solution">Say the thing that needs saying. Clearly, honestly, in a way that actually lands.</div>
+          <div class="tool-desc">Describe what you have seen — what is working and what needs to change. If your notes are too vague, the tool asks the right questions first. Choose Empathetic or Direct. The output is specific, honest, and grounded in belief that the person can improve.</div>
+          <div class="tool-outputs">
+            <div class="output-box">
+              <div class="output-label">For your team member</div>
+              <div class="output-text">Structured feedback note in your chosen tone with an invitation to discuss next steps</div>
+            </div>
+            <div class="output-box">
+              <div class="output-label">Coaching notes for you</div>
+              <div class="output-text">How to open, hold the difficult moment, and close with commitment</div>
+            </div>
+          </div>
+          <a href="https://feedbackignite.themessagebusiness.com" class="tool-link" style="color:var(--purple)" onclick="event.stopPropagation()">Try Feedback Ignite — free →</a>
+        </div>
+      </div>
+
+      <!-- GOAL IGNITE -->
+      <div class="tool-card" onclick="window.open('https://goalignite.themessagebusiness.com','_blank'); gtag('event','tool_click',{'tool_name':'Goal Ignite'});">
+        <div class="tool-accent" style="background:var(--green)"></div>
+        <div>
+          <div class="tool-header">
+            <div>
+              <div class="tool-name">Goal Ignite</div>
+              <div class="tool-strapline" style="color:var(--green)">Intelligent Goal-Setting — builds Purpose</div>
+            </div>
+            <span class="tool-badge">Live — free to try</span>
+          </div>
+          <div class="tool-problem">Most goals set in January are forgotten by March. They are written the night before the appraisal, tolerated rather than committed to, and so vague that it is impossible to tell a year later whether they were achieved.</div>
+          <div class="tool-solution">Set goals clear enough to commit to — not just accept.</div>
+          <div class="tool-desc">Describe what you want to achieve and who it is for. The tool tests clarity, measurability, and relevance — connects the goal to the person's development — and builds in the review points and accountability that most goal-setting conversations skip entirely.</div>
+          <div class="tool-outputs">
+            <div class="output-box">
+              <div class="output-label">For your team member</div>
+              <div class="output-text">Clear goal statement with milestones, review points, and space for their own commitment</div>
+            </div>
+            <div class="output-box">
+              <div class="output-label">Coaching notes for you</div>
+              <div class="output-text">How to build genuine ownership, handle pushback, keep the goal alive beyond the meeting</div>
+            </div>
+          </div>
+          <a href="https://goalignite.themessagebusiness.com" class="tool-link" style="color:var(--green)" onclick="event.stopPropagation()">Try Goal Ignite — free →</a>
+        </div>
+      </div>
+
+      <!-- COACH IGNITE -->
+      <div class="tool-card" onclick="window.open('https://coachignite.themessagebusiness.com','_blank'); gtag('event','tool_click',{'tool_name':'Coach Ignite'});">
+        <div class="tool-accent" style="background:var(--orange)"></div>
+        <div>
+          <div class="tool-header">
+            <div>
+              <div class="tool-name">Coach Ignite</div>
+              <div class="tool-strapline" style="color:var(--orange)">Intelligent Coaching — builds Pride</div>
+            </div>
+            <span class="tool-badge">Live — free to try</span>
+          </div>
+          <div class="tool-problem">Most managers solve problems for their teams because it is faster. Over time they have created a team that cannot function without them. Every decision comes through them. The people stop developing because there is no need to — the manager will solve it anyway.</div>
+          <div class="tool-solution">Build the relationship that makes every other conversation easier.</div>
+          <div class="tool-desc">Describe the person, their situation, and what you are trying to help them achieve. The tool builds a GROW-structured coaching brief, a conversation guide with the right questions, and a development tracking thread that builds across multiple sessions — structure without scripting.</div>
+          <div class="tool-outputs">
+            <div class="output-box">
+              <div class="output-label">For your team member</div>
+              <div class="output-text">Development summary with space for their own thinking and commitments</div>
+            </div>
+            <div class="output-box">
+              <div class="output-label">Coaching notes for you</div>
+              <div class="output-text">GROW conversation guide — how to ask rather than tell, stretch without overloading</div>
+            </div>
+          </div>
+          <a href="https://coachignite.themessagebusiness.com" class="tool-link" style="color:var(--orange)" onclick="event.stopPropagation()">Try Coach Ignite — free →</a>
+        </div>
+      </div>
+
+      <!-- MEETING IGNITE -->
+      <div class="tool-card" onclick="window.open('https://meetingignite.themessagebusiness.com','_blank'); gtag('event','tool_click',{'tool_name':'Meeting Ignite'});">
+        <div class="tool-accent" style="background:var(--red)"></div>
+        <div>
+          <div class="tool-header">
+            <div>
+              <div class="tool-name">Meeting Ignite</div>
+              <div class="tool-strapline" style="color:var(--red)">Intelligent Meetings — where all four happen</div>
+            </div>
+            <span class="tool-badge">Live — free to try</span>
+          </div>
+          <div class="tool-problem">Take the number of people in your last meeting, multiply by their average hourly cost, multiply by the duration, then multiply by three for the opportunity cost. That is what it cost. Most meetings are not worth it — they drift, produce no decisions, and end with intentions rather than actions.</div>
+          <div class="tool-solution">Run the meeting where goals get set, work gets delegated, feedback gets given, and people leave committed to something.</div>
+          <div class="tool-desc">Describe what needs to be achieved. The tool builds an outcome-based agenda, a facilitation guide, and captures actions with owners and deadlines. Two stages — Prepare before, and Close after — so the time your team already spends together starts producing results.</div>
+          <div class="tool-outputs">
+            <div class="output-box">
+              <div class="output-label">For your team</div>
+              <div class="output-text">Timed agenda to share in advance, actions summary with owners and deadlines, follow-up note</div>
+            </div>
+            <div class="output-box">
+              <div class="output-label">Coaching notes for you</div>
+              <div class="output-text">Facilitation guide — draw out quiet voices, manage the dominant one, close with clarity</div>
+            </div>
+          </div>
+          <a href="https://meetingignite.themessagebusiness.com" class="tool-link" style="color:var(--red)" onclick="event.stopPropagation()">Try Meeting Ignite — free →</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- QUOTE -->
+<section class="quote-section">
+  <div class="section-inner">
+    <div class="quote-mark">"</div>
+    <blockquote>The best thing a manager can do for their team is to become gradually less necessary to it.</blockquote>
+    <div class="quote-attr">Jim Harvey — The Message Business</div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="about-inner">
+    <p class="section-label">The thinking behind it</p>
+    <h2>30 years of research.<br>Built for the moment you need it.</h2>
+    <p class="about-body">The frameworks behind every tool were developed over more than three decades of working with leaders, managers, and teams across sectors and seniority levels — from C-suite to first-line, from global banks to PE-backed scale-ups, from manufacturers to not-for-profits.</p>
+    <p class="about-body">This is not generic advice from a management textbook. Every framework has been tested in real organisations, refined through real leadership situations, and built into tools designed to be used at the point of need — not read once and forgotten.</p>
+    <div class="framework-tags">
+      <span class="framework-tag">10-level delegation freedom framework</span>
+      <span class="framework-tag">9-step delegation process</span>
+      <span class="framework-tag">Vygotsky Support/Challenge model</span>
+      <span class="framework-tag">GROW coaching structure</span>
+      <span class="framework-tag">Three facilitation modes</span>
+      <span class="framework-tag">NLP outcome thinking</span>
+      <span class="framework-tag">Four Conditions of team performance</span>
+    </div>
+    <p class="about-body"><strong>Jim Harvey</strong> is the founder of The Message Business and the author of the frameworks behind Management Ignition. He has spent three decades working with leaders on the skills that determine whether a team performs — and on the conversations most managers know they should be having but keep putting off.</p>
+    <a href="https://themessagebusiness.com" class="btn-secondary" style="margin-top:1rem;display:inline-flex;">themessagebusiness.com →</a>
+  </div>
+</section>
+
+<!-- BETA -->
+<section class="beta" id="beta">
+  <div class="section-inner">
+    <p class="section-label">Beta programme</p>
+    <h2>You're building this with us.</h2>
+    <p class="beta-body">These tools are live because real leaders told us what they needed. Your experience is shaping what gets built next. One ask — after you have used a tool, tell us what worked, what did not, and what is missing.</p>
+    <div class="beta-qs">
+      <div class="beta-q">Does the output feel useful in a real leadership situation — or does it feel like a template?</div>
+      <div class="beta-q">Does the language sound human and specific, or generic?</div>
+      <div class="beta-q">Is there a step in the process that feels clunky or unclear?</div>
+      <div class="beta-q">What would make you use this every week without thinking about it?</div>
+    </div>
+    <a href="mailto:feedback@themessagebusiness.com" class="btn-white">Share your feedback →</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div>© 2026 James G Harvey / Allcow Trading Co. Ltd. trading as The Message Business</div>
+    <div class="footer-links">
+      <a href="https://themessagebusiness.com">The Message Business</a>
+      <a href="mailto:feedback@themessagebusiness.com">Contact</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      e.preventDefault();
+      const t = document.querySelector(a.getAttribute('href'));
+      if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+</script>
+
+</body>
+</html>
