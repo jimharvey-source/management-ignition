@@ -263,6 +263,22 @@
   .fade-up-3 { animation-delay: 0.4s; }
   .fade-up-4 { animation-delay: 0.55s; }
 
+  /* ── TIME BACK ── */
+  .timeback { background: white; }
+  .timeback-inner { max-width: 800px; margin: 0 auto; }
+  .timeback h2 { margin-bottom: 1.5rem; }
+  .timeback-lead { font-size: 1.05rem; line-height: 1.85; color: var(--text-muted); margin-bottom: 2.25rem; }
+  .timeback-table { display: grid; gap: 0; border-top: 1px solid var(--warm-grey); margin-bottom: 2.25rem; }
+  .timeback-row { display: flex; align-items: baseline; justify-content: space-between; gap: 1.5rem; padding: 0.85rem 0; border-bottom: 1px solid var(--warm-grey); }
+  .timeback-task { font-size: 1rem; color: var(--navy); font-weight: 500; }
+  .timeback-mins { font-family: 'Fraunces', serif; font-weight: 600; font-size: 1.15rem; color: var(--teal); white-space: nowrap; }
+  .timeback-figure { display: flex; align-items: baseline; gap: 1.25rem; flex-wrap: wrap; background: var(--navy); border-radius: 14px; padding: 2rem 2.25rem; margin-bottom: 1.5rem; }
+  .timeback-big { font-family: 'Fraunces', serif; font-weight: 700; font-size: clamp(3rem, 7vw, 4.5rem); line-height: 0.9; color: white; letter-spacing: -0.03em; white-space: nowrap; }
+  .timeback-big span { color: var(--teal); }
+  .timeback-figtext { font-size: 1rem; color: rgba(255,255,255,0.72); line-height: 1.6; flex: 1; min-width: 220px; }
+  .timeback-source { font-size: 0.85rem; color: var(--text-muted); font-style: italic; }
+  @media (max-width: 768px) { .timeback-figure { padding: 1.5rem; } }
+
   /* ── RESPONSIVE ── */
   @media (max-width: 768px) {
     nav { padding: 0 1.25rem; }
@@ -390,6 +406,30 @@
       </div>
       <p>Four skills build the four conditions. Setting clear goals builds purpose. Delegating well builds the plan. Giving effective feedback holds the people standard. Coaching for performance builds pride. And all of it happens in meetings — which is why running them well is the fifth skill that makes the other four possible.</p>
       <p>Most leaders have the knowledge. What they have never had is a practical tool that puts that knowledge to work in the moment — before a difficult conversation, not after it.</p>
+    </div>
+  </div>
+</section>
+
+<!-- TIME BACK -->
+<section class="timeback">
+  <div class="section-inner">
+    <div class="timeback-inner">
+      <p class="section-label">What it gives back</p>
+      <h2>The reason leaders don't do this well is time.</h2>
+      <p class="timeback-lead">Every leader knows they should set clear goals, give feedback early, delegate properly and coach their people. Done well, each of those takes real time. So most leaders cut corners. The goal gets handed down. The feedback gets put off. The brief never gets written.</p>
+
+      <div class="timeback-table">
+        <div class="timeback-row"><span class="timeback-task">Shape one goal properly</span><span class="timeback-mins">30 min</span></div>
+        <div class="timeback-row"><span class="timeback-task">Feedback worth giving</span><span class="timeback-mins">30 min</span></div>
+        <div class="timeback-row"><span class="timeback-task">A delegation brief</span><span class="timeback-mins">30 min</span></div>
+        <div class="timeback-row"><span class="timeback-task">A meeting that ends in decisions</span><span class="timeback-mins">60 min</span></div>
+      </div>
+
+      <div class="timeback-figure">
+        <div class="timeback-big"><span>3</span> days</div>
+        <div class="timeback-figtext">For a leader with eight direct reports, the five tools hand back two and a half to three working days every quarter. The work comes out better than the rushed version it replaces.</div>
+      </div>
+      <p class="timeback-source">Tested in a workshop with 27 managers from 11 businesses across the UK, Europe and the US.</p>
     </div>
   </div>
 </section>
