@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Security and data protection — Management Ignition</title>
+<meta name="description" content="What Management Ignition stores, where it lives, who can see it, and how it is protected. Plain English for managers, full technical detail for procurement.">
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-NK4S7FNNRB"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-NK4S7FNNRB');
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --navy:      #1B2A4A;
+    --navy-deep: #131F38;
+    --teal:      #0E7C7B;
+    --teal-pale: #E8F5F5;
+    --off-white: #F8F7F4;
+    --warm-grey: #E8E6E1;
+    --mid-grey:  #9B9990;
+    --text:      #1B2A4A;
+    --text-muted:#6B6960;
+    --amber-pale:#FEF3E2;
+    --amber:     #92400E;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Outfit', sans-serif;
+    color: var(--text);
+    background: var(--off-white);
+    line-height: 1.75;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(248,247,244,0.94);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--warm-grey);
+    padding: 0 2rem; height: 64px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .nav-brand { display: flex; align-items: center; gap: 0.6rem; text-decoration: none; }
+  .nav-name { font-family: 'Fraunces', serif; font-weight: 600; font-size: 1.05rem; color: var(--navy); }
+  .nav-links { display: flex; align-items: center; gap: 1.75rem; list-style: none; }
+  .nav-links a { font-size: 0.875rem; font-weight: 500; color: var(--text-muted); text-decoration: none; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--navy); }
+  .nav-cta { background: var(--navy) !important; color: #fff !important; padding: 0.45rem 1.1rem; border-radius: 6px; font-weight: 500 !important; }
+  .nav-cta:hover { background: var(--teal) !important; }
+
+  .page-hero { padding: 9rem 2rem 3.5rem; background: white; border-bottom: 1px solid var(--warm-grey); }
+  .hero-inner { max-width: 760px; margin: 0 auto; }
+  .eyebrow { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--teal); margin-bottom: 0.7rem; }
+  h1 {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(2rem, 4.2vw, 3.1rem);
+    font-weight: 700; line-height: 1.12; letter-spacing: -0.03em;
+    color: var(--navy); margin-bottom: 1.1rem;
+  }
+  .lede { font-size: 1.1rem; color: var(--text-muted); line-height: 1.8; }
+
+  .toc { background: var(--off-white); padding: 1.5rem 2rem; border-bottom: 1px solid var(--warm-grey); }
+  .toc-inner { max-width: 760px; margin: 0 auto; display: flex; gap: 1.5rem; flex-wrap: wrap; }
+  .toc a { font-size: 0.85rem; font-weight: 500; color: var(--text-muted); text-decoration: none; padding-bottom: 2px; border-bottom: 1px solid transparent; transition: all 0.2s; }
+  .toc a:hover { color: var(--teal); border-bottom-color: var(--teal); }
+
+  section { padding: 4rem 2rem; }
+  .section-inner { max-width: 760px; margin: 0 auto; }
+  h2 {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(1.5rem, 2.8vw, 2.1rem);
+    font-weight: 600; line-height: 1.2; letter-spacing: -0.02em;
+    color: var(--navy); margin-bottom: 1rem;
+  }
+  h3 {
+    font-family: 'Fraunces', serif;
+    font-size: 1.15rem; font-weight: 600;
+    color: var(--navy); margin: 2rem 0 0.6rem;
+  }
+  p { font-size: 1rem; color: var(--text-muted); line-height: 1.85; margin-bottom: 1.1rem; }
+  p strong { color: var(--navy); font-weight: 500; }
+  .section-label { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--teal); margin-bottom: 0.6rem; }
+
+  .plain { background: white; }
+  .plain-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 1.25rem; margin: 2rem 0; }
+  .plain-card {
+    background: var(--off-white); border: 1px solid var(--warm-grey);
+    border-radius: 12px; padding: 1.5rem; border-left: 3px solid var(--teal);
+  }
+  .plain-title { font-size: 0.98rem; font-weight: 600; color: var(--navy); margin-bottom: 0.45rem; }
+  .plain-text { font-size: 0.9rem; color: var(--text-muted); line-height: 1.7; }
+
+  .callout {
+    background: var(--teal-pale); border-left: 3px solid var(--teal);
+    border-radius: 0 10px 10px 0; padding: 1.25rem 1.5rem; margin: 1.75rem 0;
+  }
+  .callout p { color: var(--navy); margin-bottom: 0; font-size: 0.98rem; }
+  .callout p strong { font-weight: 600; }
+
+  .pending {
+    background: var(--amber-pale); border-left: 3px solid var(--amber);
+    border-radius: 0 10px 10px 0; padding: 1rem 1.4rem; margin: 1.5rem 0;
+  }
+  .pending p { color: var(--amber); margin-bottom: 0; font-size: 0.92rem; }
+
+  .technical { background: var(--off-white); }
+  table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.92rem; }
+  th {
+    background: var(--navy); color: white; text-align: left;
+    padding: 0.75rem 1rem; font-weight: 600; font-size: 0.85rem;
+  }
+  td { padding: 0.75rem 1rem; border-bottom: 1px solid var(--warm-grey); color: var(--text-muted); line-height: 1.6; vertical-align: top; }
+  tr:nth-child(even) td { background: white; }
+  td:first-child { font-weight: 500; color: var(--navy); width: 32%; }
+
+  ul.clean { list-style: none; margin: 1rem 0 1.5rem; }
+  ul.clean li {
+    font-size: 0.97rem; color: var(--text-muted); line-height: 1.75;
+    padding: 0.4rem 0 0.4rem 1.6rem; position: relative;
+  }
+  ul.clean li::before { content: "\2014"; position: absolute; left: 0; color: var(--teal); }
+
+  .contact { background: var(--navy); }
+  .contact h2 { color: white; }
+  .contact p { color: rgba(255,255,255,0.75); }
+  .contact .section-label { color: rgba(255,255,255,0.5); }
+  .contact a { color: #5EEAD4; }
+  .btn-white {
+    display: inline-flex; align-items: center; gap: 0.45rem;
+    background: white; color: var(--navy);
+    font-weight: 600; font-size: 0.95rem;
+    padding: 0.85rem 1.75rem; border-radius: 8px;
+    text-decoration: none; transition: all 0.2s; margin-top: 0.75rem;
+  }
+  .btn-white:hover { transform: translateY(-1px); box-shadow: 0 4px 16px rgba(0,0,0,0.2); }
+
+  footer { background: var(--navy-deep); color: rgba(255,255,255,0.45); padding: 2.5rem 2rem; font-size: 0.85rem; }
+  .footer-inner { max-width: 760px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
+  .footer-links { display: flex; gap: 1.5rem; flex-wrap: wrap; }
+  footer a { color: rgba(255,255,255,0.55); text-decoration: none; transition: color 0.2s; }
+  footer a:hover { color: white; }
+
+  .updated { font-size: 0.85rem; color: var(--mid-grey); font-style: italic; margin-top: 2rem; }
+
+  @media (max-width: 768px) {
+    nav { padding: 0 1.25rem; }
+    .nav-links li:not(:last-child) { display: none; }
+    section { padding: 3rem 1.25rem; }
+    .page-hero { padding: 7.5rem 1.25rem 2.5rem; }
+    .toc { padding: 1.25rem; }
+    table { font-size: 0.85rem; }
+    td, th { padding: 0.6rem 0.7rem; }
+    td:first-child { width: 38%; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-brand">
+    <svg width="26" height="26" viewBox="0 0 32 32" fill="none">
+      <path d="M16 3C16 3 8 11 8 18C8 22.4 11.6 26 16 26C20.4 26 24 22.4 24 18C24 11 16 3 16 3Z" fill="#0E7C7B"/>
+      <path d="M16 10C16 10 11 16 11 20C11 22.8 13.2 25 16 25C18.8 25 21 22.8 21 20C21 16 16 10 16 10Z" fill="#1B2A4A"/>
+    </svg>
+    <span class="nav-name">Management Ignition</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="/#record">How it works</a></li>
+    <li><a href="/#framework">The framework</a></li>
+    <li><a href="/#pricing">Pricing</a></li>
+    <li><a href="https://app.management-ignition.com" class="nav-cta">Start free</a></li>
+  </ul>
+</nav>
+
+<div class="page-hero">
+  <div class="hero-inner">
+    <p class="eyebrow">Security and data protection</p>
+    <h1>What we store, where it lives, and who can see it.</h1>
+    <p class="lede">Every note you write about a team member is personal data about a real person, and often about their performance. That is sensitive. This page explains in plain English what happens to it, then sets out the full technical detail for anyone whose job it is to check.</p>
+  </div>
+</div>
+
+<div class="toc">
+  <div class="toc-inner">
+    <a href="#plain">In plain English</a>
+    <a href="#stored">What we store</a>
+    <a href="#location">Where it lives</a>
+    <a href="#access">Who can see it</a>
+    <a href="#rights">Your rights</a>
+    <a href="#technical">Technical measures</a>
+    <a href="#subprocessors">Sub-processors</a>
+    <a href="#contact">Contact</a>
+  </div>
+</div>
+
+<section class="plain" id="plain">
+  <div class="section-inner">
+    <p class="section-label">The short version</p>
+    <h2>Four things worth knowing.</h2>
+
+    <div class="plain-grid">
+      <div class="plain-card">
+        <div class="plain-title">Your data stays in Europe</div>
+        <div class="plain-text">Stored and processed in Stockholm. It does not travel to a server outside the European Economic Area, including when the AI generates your output.</div>
+      </div>
+      <div class="plain-card">
+        <div class="plain-title">Your records are yours alone</div>
+        <div class="plain-text">Every record is owned by the account that created it. The database enforces this at row level, so a defect in the application cannot expose one manager's records to another.</div>
+      </div>
+      <div class="plain-card">
+        <div class="plain-title">Administrators cannot read your notes</div>
+        <div class="plain-text">If your organisation buys seats, the administrator sees who has a seat and whether it is being used. They cannot read your notes, your people records, or anything you have written about your team.</div>
+      </div>
+      <div class="plain-card">
+        <div class="plain-title">Export or delete, any time</div>
+        <div class="plain-text">One action exports a person and everything attached to them. One action deletes them. Deletion is permanent and takes everything attached to them with it.</div>
+      </div>
+    </div>
+
+    <div class="callout">
+      <p><strong>Why the administrator point matters.</strong> Managers write honestly when they know their notes will not be read by someone else and used against them, or against the person they are writing about. A tool that lets an administrator read a manager's private assessment of a colleague is a tool managers will not use honestly. We built it the other way round on purpose.</p>
+    </div>
+  </div>
+</section>
+
+<section class="technical" id="stored">
+  <div class="section-inner">
+    <p class="section-label">Detail</p>
+    <h2>What we store</h2>
+
+    <p>Management Ignition stores two kinds of information: the account of the manager using the service, and the records that manager creates about the people they manage.</p>
+
+    <h3>About you, the account holder</h3>
+    <ul class="clean">
+      <li>Your name and email address</li>
+      <li>Your subscription status and billing history, held by Stripe</li>
+      <li>Your organisation, if you joined through a team licence</li>
+    </ul>
+
+    <h3>About the people you manage</h3>
+    <ul class="clean">
+      <li>Their name and role, as you enter them</li>
+      <li>Free-text notes you write about their situation, performance and development</li>
+      <li>Skill and confidence assessments you record against a task or topic</li>
+      <li>Goals set, work delegated and at what level of freedom, feedback given, coaching conversations held</li>
+      <li>Actions agreed, their owner, their due date, and whether they were completed</li>
+      <li>The generated outputs from each session</li>
+    </ul>
+
+    <p>We do not ask for and do not want special category data as defined by UK GDPR Article 9. That includes health information, trade union membership, and anything about race, religion, sexual orientation or political opinion. If a manager types something in that category into a free-text field it will be stored as entered, which is why the notes fields carry guidance on what to write.</p>
+
+    <div class="callout">
+      <p><strong>The people you write about have not signed up.</strong> They are data subjects and you are recording personal data about them. If you are using this at work, your employer is the controller of that data and you should check your organisation's policy on manager records. If you are using it privately, you are the controller. Either way, write what you would be comfortable defending if the person asked to see it.</p>
+    </div>
+  </div>
+</section>
+
+<section class="plain" id="location">
+  <div class="section-inner">
+    <p class="section-label">Detail</p>
+    <h2>Where it lives</h2>
+
+    <table>
+      <tr><th>Component</th><th>Location and provider</th></tr>
+      <tr><td>Database and authentication</td><td>Supabase, hosted on AWS in Stockholm (eu-north-1)</td></tr>
+      <tr><td>Application and API functions</td><td>Vercel, pinned to Stockholm (arn1)</td></tr>
+      <tr><td>AI generation</td><td>Anthropic, EU processing</td></tr>
+      <tr><td>Payments</td><td>Stripe, an EU-US Data Privacy Framework participant</td></tr>
+      <tr><td>Email delivery</td><td>Transactional email for sign-in links only</td></tr>
+    </table>
+
+    <p>Generation is pinned to Stockholm rather than left to default. This was a deliberate architectural decision, taken when we moved the generation layer, so that the free text a manager writes about a colleague is processed in Europe rather than travelling to a US region.</p>
+
+    <p>Your prompts and the outputs generated from them are not used to train any AI model.</p>
+  </div>
+</section>
+
+<section class="technical" id="access">
+  <div class="section-inner">
+    <p class="section-label">Detail</p>
+    <h2>Who can see it</h2>
+
+    <h3>You</h3>
+    <p>You can see everything you have created. Your people, your notes, your sessions, your actions, your history.</p>
+
+    <h3>Other managers in your organisation</h3>
+    <p>Nothing. Row level security in the database scopes every record to the account that created it. A manager cannot query another manager's records even if the application had a defect that tried to.</p>
+
+    <h3>Your organisation's administrator</h3>
+    <p>If your organisation has bought seats, the administrator can see how many seats are in use, who holds them, and whether a seat is active. They cannot see your people, your notes, your sessions, or anything you have written. This is enforced in the database, not just hidden in the interface.</p>
+
+    <h3>Us</h3>
+    <p>Access to production data is restricted to named individuals who need it to operate the service, and is used only to investigate a fault or respond to a request from you. We do not read manager notes as a matter of course, and we do not analyse their content.</p>
+
+    <div class="pending">
+      <p><strong>To be completed before launch:</strong> the number of personnel with production access, and the process by which that access is reviewed.</p>
+    </div>
+  </div>
+</section>
+
+<section class="plain" id="rights">
+  <div class="section-inner">
+    <p class="section-label">Detail</p>
+    <h2>Your rights, and the rights of the people you write about</h2>
+
+    <p>Under UK GDPR and the EU GDPR, the people whose data is held have rights of access, rectification, erasure, restriction, portability and objection. Management Ignition is built so that a manager can satisfy most of those requests directly, without contacting us.</p>
+
+    <table>
+      <tr><th>Right</th><th>How it works in the app</th></tr>
+      <tr><td>Access and portability</td><td>Export a person and everything attached to them in one action. The export includes every session, output and action.</td></tr>
+      <tr><td>Erasure</td><td>Delete a person in one action. Deletion is permanent and cascades: sessions, outputs and actions attached to that person are removed with them.</td></tr>
+      <tr><td>Rectification</td><td>Edit any person record or note directly.</td></tr>
+      <tr><td>Your own account</td><td>Delete your account and everything in it. Contact us and we will action it.</td></tr>
+    </table>
+
+    <p>If you are a data subject and you believe a manager holds records about you in this service, contact that manager or your employer in the first instance. They control the record. We can help them respond but we cannot disclose records to a third party without the controller's instruction.</p>
+  </div>
+</section>
+
+<section class="technical" id="technical">
+  <div class="section-inner">
+    <p class="section-label">For procurement and information security teams</p>
+    <h2>Technical and organisational measures</h2>
+
+    <p>These are the measures referred to in Article 32 of UK GDPR and set out in Annex 3 of our data processing agreement. The DPA is available on request.</p>
+
+    <h3>Encryption</h3>
+    <ul class="clean">
+      <li>All data in transit is encrypted using TLS 1.2 or above</li>
+      <li>All data at rest is encrypted using AES-256</li>
+      <li>Secrets and API keys are held in the hosting platform's encrypted environment variable store, never in source code</li>
+    </ul>
+
+    <h3>Access control</h3>
+    <ul class="clean">
+      <li>Authentication is by one-time email link. No passwords are stored, so none can be leaked</li>
+      <li>Row level security is enforced at the database layer on every table holding personal data</li>
+      <li>Access to production infrastructure requires multi-factor authentication</li>
+      <li>Access is limited to named personnel on a least-privilege basis</li>
+    </ul>
+
+    <h3>Segregation</h3>
+    <ul class="clean">
+      <li>Each account's data is logically segregated by database policy, not by application logic alone</li>
+      <li>Diagnostic and assessment products run in separate database projects from the production application</li>
+    </ul>
+
+    <h3>Resilience and recovery</h3>
+    <ul class="clean">
+      <li>The database is hosted on managed infrastructure with automated backups</li>
+      <li>The application is deployed on infrastructure with automatic failover within the region</li>
+    </ul>
+
+    <div class="pending">
+      <p><strong>To be completed before launch:</strong> backup frequency and retention period, restoration testing schedule, and business continuity arrangements.</p>
+    </div>
+
+    <h3>Monitoring and incident response</h3>
+    <ul class="clean">
+      <li>Application and function logs are retained by the hosting platform</li>
+      <li>Personal data breaches are notified to the controller without undue delay</li>
+    </ul>
+
+    <div class="pending">
+      <p><strong>To be completed before launch:</strong> breach detection and alerting arrangements, and the tested incident response timeline.</p>
+    </div>
+
+    <h3>Data minimisation and retention</h3>
+    <ul class="clean">
+      <li>We collect only what the service needs to work</li>
+      <li>Special category data is not requested and not required</li>
+      <li>Records are retained for as long as the account is active, and deleted on request or on account closure</li>
+      <li>Deletion cascades so that no orphaned records remain</li>
+    </ul>
+  </div>
+</section>
+
+<section class="plain" id="subprocessors">
+  <div class="section-inner">
+    <p class="section-label">Detail</p>
+    <h2>Sub-processors</h2>
+
+    <p>We use the following sub-processors to deliver the service. Each is engaged under a written contract containing data protection terms.</p>
+
+    <table>
+      <tr><th>Sub-processor</th><th>Purpose</th><th>Location</th></tr>
+      <tr><td>Supabase</td><td>Database and authentication</td><td>AWS Stockholm, eu-north-1</td></tr>
+      <tr><td>Vercel</td><td>Application hosting and API functions</td><td>Stockholm, arn1</td></tr>
+      <tr><td>Anthropic</td><td>AI generation</td><td>EU processing</td></tr>
+      <tr><td>Stripe</td><td>Payment processing</td><td>EU and US, Data Privacy Framework</td></tr>
+    </table>
+
+    <p>We will give reasonable notice of any intended change to this list. If you object to a new sub-processor on reasonable data protection grounds, you may terminate without penalty.</p>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="section-inner">
+    <p class="section-label">Getting in touch</p>
+    <h2>Questions, requests, or a security concern</h2>
+
+    <p>Management Ignition is operated by Allcow Trading Co. Ltd., trading as The Message Business, registered in England and Wales.</p>
+
+    <p>For data protection questions, subject access requests, or to request a copy of the data processing agreement, email <a href="mailto:team@management-ignition.com">team@management-ignition.com</a>.</p>
+
+    <p>If you believe you have found a security vulnerability, please email us before disclosing it publicly. We will acknowledge within two working days.</p>
+
+    <p>You also have the right to complain to the Information Commissioner's Office at <a href="https://ico.org.uk">ico.org.uk</a>.</p>
+
+    <div class="pending" style="background:rgba(255,255,255,0.08);border-left-color:#5EEAD4;">
+      <p style="color:rgba(255,255,255,0.85)"><strong>To be completed before launch:</strong> ICO registration number.</p>
+    </div>
+
+    <a href="mailto:team@management-ignition.com?subject=Data%20protection%20enquiry" class="btn-white">Email us &rarr;</a>
+
+    <p class="updated" style="color:rgba(255,255,255,0.45)">This page was last updated in August 2026. We update it whenever the underlying arrangements change.</p>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div>&copy; 2026 James G Harvey / Allcow Trading Co. Ltd. trading as The Message Business</div>
+    <div class="footer-links">
+      <a href="/">Home</a>
+      <a href="https://themessagebusiness.com">The Message Business</a>
+      <a href="mailto:team@management-ignition.com">Contact</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
