@@ -108,6 +108,9 @@
 
   /* The 4Ps */
   .fourps { background: var(--canvas); }
+  .fp-levels { margin: 0.5rem 0 2rem; }
+  .fp-levels img { display: block; width: 100%; height: auto; max-width: 1000px; margin: 0 auto; }
+  .fp-levels figcaption { text-align: center; font-size: 0.875rem; font-weight: 600; color: var(--muted); margin-top: 0.75rem; }
   .fp-list { list-style: none; margin-top: 2.5rem; display: flex; flex-direction: column; gap: 0.75rem; }
   .fp-row { display: grid; grid-template-columns: 3rem 1fr 15rem; gap: 1.5rem; align-items: start; background: var(--surface); border: 1px solid var(--rule); border-radius: 10px; padding: 1.5rem; }
   .fp-num { font-size: 1.75rem; font-weight: 600; line-height: 1; color: var(--accent); letter-spacing: -0.03em; }
@@ -305,6 +308,15 @@
     <p class="section-label">The 4Ps</p>
     <h2>Four elements.<br>Built in order.</h2>
     <p class="section-lead">Every great team meets four requirements. They stack, one on the other. You build a brilliant team from the foundation up, and every level adds to the team's confidence and capability.</p>
+
+    <figure class="fp-levels">
+      <picture>
+        <source media="(min-width: 720px)" srcset="/4ps-levels-page.svg">
+        <img src="/4ps-levels-narrow.svg" alt="The 4Ps as a pyramid: Purpose at the foundation, then Plan, People, and Pride at the peak. Each level governs everything above it. Each level can only influence the ones below it. Symptoms show at the peak; causes sit in the foundation." width="600" height="560">
+      </picture>
+      <figcaption>Built from the bottom. Reinforced from the top.</figcaption>
+    </figure>
+
 
     <ol class="fp-list">
       <li class="fp-row">
