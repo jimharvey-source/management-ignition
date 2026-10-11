@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Security and data protection — Management Ignition</title>
+<title>Security and data protection: Management Ignition</title>
 <meta name="description" content="What Management Ignition stores, where it lives, who can see it, and how it is protected. Plain English for managers, full technical detail for procurement.">
 
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-NK4S7FNNRB"></script>
@@ -16,149 +16,96 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400..700&display=swap" rel="stylesheet">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
 
 <style>
+  /* Management Ignition design system, 11 October 2026. Same tokens as index.html. */
   :root {
-    --navy:      #1B2A4A;
-    --navy-deep: #131F38;
-    --teal:      #0E7C7B;
-    --teal-pale: #E8F5F5;
-    --off-white: #F8F7F4;
-    --warm-grey: #E8E6E1;
-    --mid-grey:  #9B9990;
-    --text:      #1B2A4A;
-    --text-muted:#6B6960;
-    --amber-pale:#FEF3E2;
-    --amber:     #92400E;
+    --canvas: #f6f8fb; --surface: #ffffff; --surface-sunk: #eef2f6; --rule: #e2e7ee;
+    --ink: #1b2a4a; --ink-2: #2a3d63; --muted: #5d6b7f; --accent: #0e7c7b; --accent-soft: #e9f3f3;
+    --warn: #8a5300; --warn-soft: #fff3e0;
+    --sans: "Instrument Sans", -apple-system, "SF Pro Text", "Segoe UI", Helvetica, Arial, sans-serif;
   }
-
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; }
-  body {
-    font-family: 'Outfit', sans-serif;
-    color: var(--text);
-    background: var(--off-white);
-    line-height: 1.75;
-    -webkit-font-smoothing: antialiased;
-  }
+  body { font-family: var(--sans); color: var(--ink-2); background: var(--canvas); line-height: 1.7; -webkit-font-smoothing: antialiased; }
+  a { color: var(--ink); text-decoration-color: var(--rule); text-underline-offset: 4px; }
+  a:hover { text-decoration-color: var(--ink); }
 
-  nav {
-    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-    background: rgba(248,247,244,0.94);
-    backdrop-filter: blur(14px);
-    border-bottom: 1px solid var(--warm-grey);
-    padding: 0 2rem; height: 64px;
-    display: flex; align-items: center; justify-content: space-between;
-  }
-  .nav-brand { display: flex; align-items: center; gap: 0.6rem; text-decoration: none; }
-  .nav-name { font-family: 'Fraunces', serif; font-weight: 600; font-size: 1.05rem; color: var(--navy); }
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; height: 68px; padding: 0 2rem; display: flex; align-items: center; justify-content: space-between;
+    background: rgba(246,248,251,0.94); backdrop-filter: blur(14px); border-bottom: 1px solid var(--rule); }
+  .nav-brand { display: flex; align-items: center; text-decoration: none; }
+  .nav-brand img { display: block; height: 34px; width: auto; }
   .nav-links { display: flex; align-items: center; gap: 1.75rem; list-style: none; }
-  .nav-links a { font-size: 0.875rem; font-weight: 500; color: var(--text-muted); text-decoration: none; transition: color 0.2s; }
-  .nav-links a:hover { color: var(--navy); }
-  .nav-cta { background: var(--navy) !important; color: #fff !important; padding: 0.45rem 1.1rem; border-radius: 6px; font-weight: 500 !important; }
-  .nav-cta:hover { background: var(--teal) !important; }
+  .nav-links a { font-size: 0.875rem; font-weight: 500; color: var(--ink-2); text-decoration: none; }
+  .nav-links a:hover { color: var(--ink); }
+  .nav-cta { display: inline-flex; align-items: center; min-height: 40px; padding: 0 1.1rem; border-radius: 10px; background: var(--ink); color: #fff !important; font-weight: 600 !important; }
+  .nav-cta:hover { opacity: 0.88; }
 
-  .page-hero { padding: 9rem 2rem 3.5rem; background: white; border-bottom: 1px solid var(--warm-grey); }
+  .page-hero { padding: 9rem 2rem 3.5rem; background: var(--surface); border-bottom: 1px solid var(--rule); }
   .hero-inner { max-width: 760px; margin: 0 auto; }
-  .eyebrow { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--teal); margin-bottom: 0.7rem; }
-  h1 {
-    font-family: 'Fraunces', serif;
-    font-size: clamp(2rem, 4.2vw, 3.1rem);
-    font-weight: 700; line-height: 1.12; letter-spacing: -0.03em;
-    color: var(--navy); margin-bottom: 1.1rem;
-  }
-  .lede { font-size: 1.1rem; color: var(--text-muted); line-height: 1.8; }
+  .eyebrow { font-size: 0.8125rem; font-weight: 600; letter-spacing: 0.01em; color: var(--muted); margin-bottom: 0.7rem; }
+  h1 { font-size: clamp(2.2rem, 4.6vw, 3.25rem); font-weight: 600; line-height: 1.08; letter-spacing: -0.035em; color: var(--ink); margin-bottom: 1.1rem; text-wrap: balance; }
+  .lede { font-size: 1.125rem; color: var(--ink-2); line-height: 1.75; }
 
-  .toc { background: var(--off-white); padding: 1.5rem 2rem; border-bottom: 1px solid var(--warm-grey); }
-  .toc-inner { max-width: 760px; margin: 0 auto; display: flex; gap: 1.5rem; flex-wrap: wrap; }
-  .toc a { font-size: 0.85rem; font-weight: 500; color: var(--text-muted); text-decoration: none; padding-bottom: 2px; border-bottom: 1px solid transparent; transition: all 0.2s; }
-  .toc a:hover { color: var(--teal); border-bottom-color: var(--teal); }
+  .toc { background: var(--canvas); padding: 1.25rem 2rem; border-bottom: 1px solid var(--rule); }
+  .toc-inner { max-width: 760px; margin: 0 auto; display: flex; gap: 0.5rem; flex-wrap: wrap; }
+  .toc a { font-size: 0.85rem; font-weight: 500; color: var(--ink-2); text-decoration: none; background: var(--surface); border: 1px solid var(--rule); border-radius: 999px; padding: 0.3rem 0.8rem; }
+  .toc a:hover { border-color: var(--ink); color: var(--ink); }
 
   section { padding: 4rem 2rem; }
   .section-inner { max-width: 760px; margin: 0 auto; }
-  h2 {
-    font-family: 'Fraunces', serif;
-    font-size: clamp(1.5rem, 2.8vw, 2.1rem);
-    font-weight: 600; line-height: 1.2; letter-spacing: -0.02em;
-    color: var(--navy); margin-bottom: 1rem;
-  }
-  h3 {
-    font-family: 'Fraunces', serif;
-    font-size: 1.15rem; font-weight: 600;
-    color: var(--navy); margin: 2rem 0 0.6rem;
-  }
-  p { font-size: 1rem; color: var(--text-muted); line-height: 1.85; margin-bottom: 1.1rem; }
-  p strong { color: var(--navy); font-weight: 500; }
-  .section-label { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--teal); margin-bottom: 0.6rem; }
+  h2 { font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight: 600; line-height: 1.15; letter-spacing: -0.03em; color: var(--ink); margin-bottom: 1rem; }
+  h3 { font-size: 1.1rem; font-weight: 600; color: var(--ink); margin: 2rem 0 0.6rem; letter-spacing: -0.01em; }
+  p { font-size: 1rem; color: var(--ink-2); line-height: 1.8; margin-bottom: 1.1rem; }
+  p strong { color: var(--ink); font-weight: 600; }
+  .section-label { font-size: 0.8125rem; font-weight: 600; letter-spacing: 0.01em; color: var(--muted); margin-bottom: 0.6rem; }
 
-  .plain { background: white; }
-  .plain-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 1.25rem; margin: 2rem 0; }
-  .plain-card {
-    background: var(--off-white); border: 1px solid var(--warm-grey);
-    border-radius: 12px; padding: 1.5rem; border-left: 3px solid var(--teal);
-  }
-  .plain-title { font-size: 0.98rem; font-weight: 600; color: var(--navy); margin-bottom: 0.45rem; }
-  .plain-text { font-size: 0.9rem; color: var(--text-muted); line-height: 1.7; }
+  .plain { background: var(--surface); }
+  .plain-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 0.75rem; margin: 2rem 0; }
+  .plain-card { background: var(--canvas); border: 1px solid var(--rule); border-radius: 10px; padding: 1.4rem; }
+  .plain-title { font-size: 0.975rem; font-weight: 600; color: var(--ink); margin-bottom: 0.4rem; }
+  .plain-text { font-size: 0.925rem; color: var(--ink-2); line-height: 1.7; }
 
-  .callout {
-    background: var(--teal-pale); border-left: 3px solid var(--teal);
-    border-radius: 0 10px 10px 0; padding: 1.25rem 1.5rem; margin: 1.75rem 0;
-  }
-  .callout p { color: var(--navy); margin-bottom: 0; font-size: 0.98rem; }
-  .callout p strong { font-weight: 600; }
+  .callout { background: var(--accent-soft); border-radius: 10px; padding: 1.25rem 1.5rem; margin: 1.75rem 0; }
+  .callout p { color: var(--ink); margin-bottom: 0; font-size: 0.975rem; }
 
-  .pending {
-    background: var(--amber-pale); border-left: 3px solid var(--amber);
-    border-radius: 0 10px 10px 0; padding: 1rem 1.4rem; margin: 1.5rem 0;
-  }
-  .pending p { color: var(--amber); margin-bottom: 0; font-size: 0.92rem; }
+  .pending { background: var(--warn-soft); border-radius: 10px; padding: 1rem 1.4rem; margin: 1.5rem 0; }
+  .pending p { color: var(--warn); margin-bottom: 0; font-size: 0.925rem; }
+  .pending p strong { color: var(--warn); }
 
-  .technical { background: var(--off-white); }
-  table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.92rem; }
-  th {
-    background: var(--navy); color: white; text-align: left;
-    padding: 0.75rem 1rem; font-weight: 600; font-size: 0.85rem;
-  }
-  td { padding: 0.75rem 1rem; border-bottom: 1px solid var(--warm-grey); color: var(--text-muted); line-height: 1.6; vertical-align: top; }
-  tr:nth-child(even) td { background: white; }
-  td:first-child { font-weight: 500; color: var(--navy); width: 32%; }
+  .technical { background: var(--canvas); }
+  table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.925rem; background: var(--surface); border: 1px solid var(--rule); border-radius: 10px; overflow: hidden; }
+  th { background: var(--surface-sunk); color: var(--ink); text-align: left; padding: 0.75rem 1rem; font-weight: 600; font-size: 0.85rem; border-bottom: 1px solid var(--rule); }
+  td { padding: 0.75rem 1rem; border-bottom: 1px solid var(--rule); color: var(--ink-2); line-height: 1.6; vertical-align: top; }
+  tr:last-child td { border-bottom: 0; }
+  td:first-child { font-weight: 600; color: var(--ink); width: 32%; }
 
   ul.clean { list-style: none; margin: 1rem 0 1.5rem; }
-  ul.clean li {
-    font-size: 0.97rem; color: var(--text-muted); line-height: 1.75;
-    padding: 0.4rem 0 0.4rem 1.6rem; position: relative;
-  }
-  ul.clean li::before { content: "\2014"; position: absolute; left: 0; color: var(--teal); }
+  ul.clean li { font-size: 0.975rem; color: var(--ink-2); line-height: 1.75; padding: 0.35rem 0 0.35rem 1.4rem; position: relative; }
+  ul.clean li::before { content: ""; position: absolute; left: 0.2rem; top: 0.95rem; width: 6px; height: 6px; border-radius: 50%; background: var(--ink); }
 
-  .contact { background: var(--navy); }
-  .contact h2 { color: white; }
-  .contact p { color: rgba(255,255,255,0.75); }
-  .contact .section-label { color: rgba(255,255,255,0.5); }
-  .contact a { color: #5EEAD4; }
-  .btn-white {
-    display: inline-flex; align-items: center; gap: 0.45rem;
-    background: white; color: var(--navy);
-    font-weight: 600; font-size: 0.95rem;
-    padding: 0.85rem 1.75rem; border-radius: 8px;
-    text-decoration: none; transition: all 0.2s; margin-top: 0.75rem;
-  }
-  .btn-white:hover { transform: translateY(-1px); box-shadow: 0 4px 16px rgba(0,0,0,0.2); }
+  .contact { background: var(--surface); border-top: 1px solid var(--rule); }
+  .btn-white { display: inline-flex; align-items: center; gap: 0.45rem; min-height: 48px; padding: 0 1.6rem; border-radius: 10px;
+    background: var(--ink); color: #fff; font-weight: 600; font-size: 0.95rem; text-decoration: none; margin-top: 0.75rem; }
+  .btn-white:hover { opacity: 0.88; }
 
-  footer { background: var(--navy-deep); color: rgba(255,255,255,0.45); padding: 2.5rem 2rem; font-size: 0.85rem; }
+  footer { background: var(--ink); color: rgba(255,255,255,0.6); padding: 2.5rem 2rem; font-size: 0.85rem; }
   .footer-inner { max-width: 760px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
   .footer-links { display: flex; gap: 1.5rem; flex-wrap: wrap; }
-  footer a { color: rgba(255,255,255,0.55); text-decoration: none; transition: color 0.2s; }
-  footer a:hover { color: white; }
+  footer a { color: rgba(255,255,255,0.75); text-decoration: none; }
+  footer a:hover { color: #fff; }
 
-  .updated { font-size: 0.85rem; color: var(--mid-grey); font-style: italic; margin-top: 2rem; }
+  .updated { font-size: 0.85rem; color: var(--muted); margin-top: 2rem; }
 
   @media (max-width: 768px) {
-    nav { padding: 0 1.25rem; }
+    nav { padding: 0 1rem; }
+    .nav-brand img { height: 28px; }
     .nav-links li:not(:last-child) { display: none; }
     section { padding: 3rem 1.25rem; }
     .page-hero { padding: 7.5rem 1.25rem 2.5rem; }
-    .toc { padding: 1.25rem; }
+    .toc { padding: 1rem 1.25rem; }
     table { font-size: 0.85rem; }
     td, th { padding: 0.6rem 0.7rem; }
     td:first-child { width: 38%; }
@@ -168,16 +115,10 @@
 <body>
 
 <nav>
-  <a href="/" class="nav-brand">
-    <svg width="26" height="26" viewBox="0 0 32 32" fill="none">
-      <path d="M16 3C16 3 8 11 8 18C8 22.4 11.6 26 16 26C20.4 26 24 22.4 24 18C24 11 16 3 16 3Z" fill="#0E7C7B"/>
-      <path d="M16 10C16 10 11 16 11 20C11 22.8 13.2 25 16 25C18.8 25 21 22.8 21 20C21 16 16 10 16 10Z" fill="#1B2A4A"/>
-    </svg>
-    <span class="nav-name">Management Ignition</span>
-  </a>
+  <a href="/" class="nav-brand"><img src="/mi-lockup.svg" alt="Jim Harvey&rsquo;s Management Ignition" width="261" height="34"></a>
   <ul class="nav-links">
     <li><a href="/#record">How it works</a></li>
-    <li><a href="/#framework">The framework</a></li>
+    <li><a href="/#fourps">The 4Ps</a></li>
     <li><a href="/#pricing">Pricing</a></li>
     <li><a href="https://app.management-ignition.com" class="nav-cta">Start free</a></li>
   </ul>
@@ -418,13 +359,13 @@
 
     <p>You also have the right to complain to the Information Commissioner's Office at <a href="https://ico.org.uk">ico.org.uk</a>.</p>
 
-    <div class="pending" style="background:rgba(255,255,255,0.08);border-left-color:#5EEAD4;">
-      <p style="color:rgba(255,255,255,0.85)"><strong>To be completed before launch:</strong> ICO registration number.</p>
+    <div class="pending">
+      <p><strong>To be completed before launch:</strong> ICO registration number.</p>
     </div>
 
     <a href="mailto:team@management-ignition.com?subject=Data%20protection%20enquiry" class="btn-white">Email us &rarr;</a>
 
-    <p class="updated" style="color:rgba(255,255,255,0.45)">This page was last updated in August 2026. We update it whenever the underlying arrangements change.</p>
+    <p class="updated">This page was last updated in August 2026. We update it whenever the underlying arrangements change.</p>
   </div>
 </section>
 
