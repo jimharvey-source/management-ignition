@@ -108,9 +108,6 @@
 
   /* The 4Ps */
   .fourps { background: var(--canvas); }
-  .fp-levels { margin: 0.5rem 0 2rem; }
-  .fp-levels img { display: block; width: 100%; height: auto; max-width: 1000px; margin: 0 auto; }
-  .fp-levels figcaption { text-align: center; font-size: 0.875rem; font-weight: 600; color: var(--muted); margin-top: 0.75rem; }
   .fp-list { list-style: none; margin-top: 2.5rem; display: flex; flex-direction: column; gap: 0.75rem; }
   .fp-row { display: grid; grid-template-columns: 3rem 1fr 15rem; gap: 1.5rem; align-items: start; background: var(--surface); border: 1px solid var(--rule); border-radius: 10px; padding: 1.5rem; }
   .fp-num { font-size: 1.75rem; font-weight: 600; line-height: 1; color: var(--accent); letter-spacing: -0.03em; }
@@ -122,8 +119,31 @@
   .fp-work { border-left: 1px solid var(--rule); padding-left: 1.25rem; }
   .fp-work-label { font-size: 0.8125rem; font-weight: 600; color: var(--muted); }
   .fp-work-name { font-size: 0.95rem; font-weight: 600; color: var(--ink); margin: 0.2rem 0 0.6rem; line-height: 1.4; }
-  .fp-tool { display: inline-flex; align-items: center; gap: 0.5rem; min-height: 40px; padding: 0 1rem; border-radius: 10px; background: var(--surface); border: 1px solid var(--rule); font-size: 0.9rem; font-weight: 600; color: var(--ink); text-decoration: none; transition: border-color 0.15s; }
-  .fp-tool:hover { border-color: var(--ink); }
+  .fp-tool { display: inline-flex; align-items: center; gap: 0.4rem; min-height: 40px; padding: 0 1.1rem; border-radius: 10px; background: var(--accent); border: 1px solid var(--accent); font-size: 0.9rem; font-weight: 600; color: #fff; text-decoration: none; transition: opacity 0.15s; }
+  .fp-tool:hover { opacity: 0.9; }
+  .fp-tool .dot { display: none; }
+
+  /* The levels illustration */
+  .lv { margin-top: 2.5rem; background: var(--surface); border: 1px solid var(--rule); border-radius: 22px; padding: 2.5rem; box-shadow: var(--shadow); }
+  .lv-label { font-size: 0.8125rem; font-weight: 600; color: var(--muted); }
+  .lv-head h3 { font-size: clamp(1.4rem, 2.4vw, 1.75rem); letter-spacing: -0.025em; line-height: 1.2; margin: 0.35rem 0 2rem; }
+  .lv-body { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr); gap: 3rem; align-items: center; }
+  .lv-stack { position: relative; display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 0 2.25rem; }
+  .lv-bar { display: flex; align-items: center; justify-content: center; gap: 0.5rem; height: 54px; border-radius: 999px; background: var(--ink); color: #fff; font-size: 1rem; font-weight: 600; letter-spacing: -0.01em; }
+  .lv-bar small { font-size: 0.75rem; font-weight: 500; opacity: 0.75; }
+  .lv-bar.peak { background: var(--accent); }
+  .lv-rail { position: absolute; top: 4px; bottom: 4px; width: 2px; border-radius: 2px; }
+  .lv-rail::after { content: ""; position: absolute; left: 50%; transform: translateX(-50%); border-left: 7px solid transparent; border-right: 7px solid transparent; }
+  .lv-rail.up { left: 0.5rem; background: var(--ink); }
+  .lv-rail.up::after { top: -10px; border-bottom: 12px solid var(--ink); }
+  .lv-rail.down { right: 0.5rem; background: var(--accent); }
+  .lv-rail.down::after { bottom: -10px; border-top: 12px solid var(--accent); }
+  .lv-points { list-style: none; display: flex; flex-direction: column; gap: 1.4rem; }
+  .lv-points li { display: grid; grid-template-columns: 2.25rem 1fr; gap: 0.9rem; align-items: start; }
+  .lv-icon { width: 2.25rem; height: 2.25rem; border-radius: 999px; display: grid; place-items: center; background: var(--surface-sunk); }
+  .lv-icon.down { background: var(--accent-soft); }
+  .lv-points strong { display: block; font-size: 1rem; color: var(--ink); margin-bottom: 0.2rem; }
+  .lv-points p { font-size: 0.95rem; color: var(--ink-2); line-height: 1.65; }
   .dot { width: 9px; height: 9px; border-radius: 50%; display: inline-block; flex: none; }
   .fp-mortar { display: flex; justify-content: space-between; align-items: center; gap: 1.5rem; flex-wrap: wrap; margin-top: 0.75rem; padding: 1.25rem 1.5rem 1.25rem 6rem; border: 1px dashed var(--muted); border-radius: 10px; }
   .fp-mortar .fp-name { font-size: 1.05rem; }
@@ -240,6 +260,8 @@
     .fp-row { grid-template-columns: 2.25rem 1fr; gap: 1rem; padding: 1.25rem; }
     .fp-work { grid-column: 2; border-left: 0; border-top: 1px solid var(--rule); padding: 0.9rem 0 0; }
     .fp-mortar { padding: 1.25rem; }
+    .lv { padding: 1.5rem; }
+    .lv-body { grid-template-columns: 1fr; gap: 2rem; }
     .fp-assess { grid-template-columns: 1fr; padding: 1.75rem; }
     .fp-assess-act { text-align: left; }
   }
@@ -309,13 +331,7 @@
     <h2>Four elements.<br>Built in order.</h2>
     <p class="section-lead">Every great team meets four requirements. They stack, one on the other. You build a brilliant team from the foundation up, and every level adds to the team's confidence and capability.</p>
 
-    <figure class="fp-levels">
-      <picture>
-        <source media="(min-width: 720px)" srcset="/4ps-levels-page.svg">
-        <img src="/4ps-levels-narrow.svg" alt="The 4Ps as a pyramid: Purpose at the foundation, then Plan, People, and Pride at the peak. Each level governs everything above it. Each level can only influence the ones below it. Symptoms show at the peak; causes sit in the foundation." width="600" height="560">
-      </picture>
-      <figcaption>Built from the bottom. Reinforced from the top.</figcaption>
-    </figure>
+
 
 
     <ol class="fp-list">
@@ -380,6 +396,31 @@
       </div>
       <a class="fp-tool js-tool" href="https://meeting.management-ignition.com"><span class="dot" style="background:#F44336"></span>Meeting Ignite &rarr;</a>
     </div>
+
+    <figure class="lv" aria-label="The 4Ps as a pyramid: Purpose at the foundation, then Plan, People, and Pride at the peak.">
+      <figcaption class="lv-head">
+        <span class="lv-label">How the four work together</span>
+        <h3>Built from the bottom. Reinforced from the top.</h3>
+      </figcaption>
+      <div class="lv-body">
+        <div class="lv-stack" aria-hidden="true">
+          <span class="lv-rail up"></span>
+          <div class="lv-bar peak" style="width:46%">Pride <small>Peak</small></div>
+          <div class="lv-bar" style="width:64%">People</div>
+          <div class="lv-bar" style="width:82%">Plan</div>
+          <div class="lv-bar" style="width:100%">Purpose <small>Foundation</small></div>
+          <span class="lv-rail down"></span>
+        </div>
+        <ul class="lv-points">
+          <li><span class="lv-icon"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="#1b2a4a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 13V3M4 7l4-4 4 4"/></svg></span>
+            <div><strong>The foundation governs everything above it.</strong><p>Each level sets the limits for the ones above. Plan can be no clearer than Purpose, and People can be no stronger than the Plan they work to.</p></div></li>
+          <li><span class="lv-icon down"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="#0e7c7b" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3v10M4 9l4 4 4-4"/></svg></span>
+            <div><strong>Higher levels can only influence the ones below.</strong><p>A proud team tightens its own standards and process. It cannot fix a purpose nobody has set.</p></div></li>
+          <li><span class="lv-icon"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="#1b2a4a" stroke-width="1.8" stroke-linecap="round"><circle cx="7" cy="7" r="4.5"/><path d="M10.5 10.5 14 14"/></svg></span>
+            <div><strong>Symptoms show at the peak. Causes sit in the foundation.</strong><p>A team with no energy looks like a Pride problem. The cause usually sits further down: an unclear standard, unclear authority, or no agreed purpose at all. So start with the lowest layer that is not holding.</p></div></li>
+        </ul>
+      </div>
+    </figure>
 
     <div class="fp-assess">
       <div>
